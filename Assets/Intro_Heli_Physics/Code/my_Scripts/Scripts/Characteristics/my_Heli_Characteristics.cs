@@ -26,23 +26,21 @@ namespace My_Practice
         protected virtual void HandleLift(Rigidbody _rb, my_Input_Controller input)
         {
             //Debug.Log("Handling Lift");
-            Vector3 liftForce = transform.up * Physics.gravity.magnitude * _rb.mass;
-            _rb.AddForce(liftForce, ForceMode.Force);
-            //if (mainRotor)
-            //{
-            //    Vector3 liftForce = transform.up * (Physics.gravity.magnitude + maxLiftForce) * _rb.mass;
-            //    float normalizedRPMs = mainRotor.CurrentRPMs / 500f;
-            //    _rb.AddForce(liftForce * Mathf.Pow(input.StickyCollectiveInput, 2f), ForceMode.Force);
-            //}
+            if (mainRotor)
+            {
+                Vector3 liftForce = transform.up * (Physics.gravity.magnitude + maxLiftForce) * _rb.mass;
+                float normalizedRPMs = mainRotor.CurrentRPMs / 500f;
+                _rb.AddForce(liftForce * Mathf.Pow(normalizedRPMs, 2f) * Mathf.Pow(input.StickyCollectiveInput, 2f), ForceMode.Force);
+            }
         }
 
         protected virtual void HandleCyclic(Rigidbody _rb, my_Input_Controller input)
         {
-            Debug.Log("Handling Cyclic");
+            //Debug.Log("Handling Cyclic");
         }
         protected virtual void HandlePedals(Rigidbody _rb, my_Input_Controller input)
         {
-            Debug.Log("Handling Pedals");
+            //Debug.Log("Handling Pedals");
         }
         #endregion
     }

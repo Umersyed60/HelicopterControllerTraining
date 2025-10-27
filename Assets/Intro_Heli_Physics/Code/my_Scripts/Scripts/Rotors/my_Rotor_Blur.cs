@@ -41,10 +41,12 @@ namespace My_Practice
             if (blurTextID > 2 && blades.Count > 0)
             {
                 HandleGeoBladeViz(false);
+                blurGeo.SetActive(true);
             }
             else
             {
                 HandleGeoBladeViz(true);
+                blurGeo.SetActive(false);
             }
         }
         #endregion
