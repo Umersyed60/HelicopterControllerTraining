@@ -11,6 +11,11 @@ namespace My_Practice
         public Transform lRotor;
         public Transform rRotor;
         public float maxPitch = 35f;
+
+        public float radius = 2f;
+
+        [HideInInspector]
+        public Vector2 cyclicVal;
         #endregion
 
         #region Properties
@@ -36,9 +41,14 @@ namespace My_Practice
             currentRPMs = (dps / 360) * 60f;
             transform.Rotate(Vector3.up, dps * Time.deltaTime * 0.5f);
 
+            //Figure out the Swash blade effect
+            Vector3 discNormal = Vector3.Normalize(transform.up + new Vector3(-cyclicVal.x, 0f, -cyclicVal.y));
+
             //Pitch the blades up and down
             if (lRotor && rRotor)
             {
+                cyclicVal = input.CyclicInput;
+
                 lRotor.localRotation = Quaternion.Euler(-input.StickyCollectiveInput * maxPitch, 0f, 0f);
                 rRotor.localRotation = Quaternion.Euler(input.StickyCollectiveInput * maxPitch, 0f, 0f);
             }

@@ -42,7 +42,7 @@ namespace My_Practice
             {
                 HandleEngines();
                 HandleRotors();
-                //HandleCharacteristics();
+                HandleCharacteristics();
             }
         }
 
