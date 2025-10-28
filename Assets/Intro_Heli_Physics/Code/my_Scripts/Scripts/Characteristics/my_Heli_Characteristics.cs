@@ -10,6 +10,10 @@ namespace My_Practice
         [Header("Lift Properties")]
         public float maxLiftForce = 100f;
         public my_HeliMain_Rotor mainRotor;
+        [Space]
+
+        [Header("Tail Rotor Properties")]
+        public float tailForce = 2f;
         #endregion
 
         #region BuiltIn Methods
@@ -41,6 +45,7 @@ namespace My_Practice
         protected virtual void HandlePedals(Rigidbody _rb, my_Input_Controller input)
         {
             //Debug.Log("Handling Pedals");
+            _rb.AddTorque(Vector3.up * input.PedalInput * tailForce, ForceMode.Acceleration);
         }
         #endregion
     }
