@@ -3594,6 +3594,8 @@ MonoBehaviour:
   mainRotor: {fileID: 3595630079388387106}
   tailForce: 2
   cyclicForce: 2
+  cyclicForceMultiplier: 4000
+  useAutoLevel: 1
   autoLevelForce: 4
 --- !u!1 &3595630079388387141
 GameObject:

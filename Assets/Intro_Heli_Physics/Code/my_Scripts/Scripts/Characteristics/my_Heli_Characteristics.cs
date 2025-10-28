@@ -17,6 +17,7 @@ namespace My_Practice
 
         [Header("Cyclic Properties")]
         public float cyclicForce = 2f;
+        public float cyclicForceMultiplier = 1000f;
 
         [Header("Auto Level Properties")]
         public bool useAutoLevel = true;
@@ -64,6 +65,13 @@ namespace My_Practice
 
             float cyclicXForce = -input.CyclicInput.y * cyclicForce;
             _rb.AddRelativeTorque(Vector3.right * cyclicXForce, ForceMode.Acceleration);
+
+            //Apply force based off of the Dot Product values
+            Vector3 forwardVec = flatFwd * forwardDot;
+            Vector3 rightVec = flatRight * rightDot;
+            Vector3 finalCyclicDir = Vector3.ClampMagnitude(forwardVec + rightVec, 1f) * (cyclicForce * cyclicForceMultiplier);
+            //Debug.DrawRay(transform.position, finalCyclicDir, Color.green);
+            _rb.AddForce(finalCyclicDir, ForceMode.Force);
         }
         protected virtual void HandlePedals(Rigidbody _rb, my_Input_Controller input)
         {
@@ -77,13 +85,13 @@ namespace My_Practice
             flatFwd = transform.forward;
             flatFwd.y = 0f;
             flatFwd = flatFwd.normalized;
-            Debug.DrawRay(transform.position, flatFwd, Color.blue);
+            //Debug.DrawRay(transform.position, flatFwd, Color.blue);
 
             //Calculate Flat Right
             flatRight = transform.right;
             flatRight.y = 0f;
             flatRight = flatRight.normalized;
-            Debug.DrawRay(transform.position, flatRight, Color.red);
+            //Debug.DrawRay(transform.position, flatRight, Color.red);
 
             //Calculate Angles
             forwardDot = Vector3.Dot(transform.up, flatFwd);
