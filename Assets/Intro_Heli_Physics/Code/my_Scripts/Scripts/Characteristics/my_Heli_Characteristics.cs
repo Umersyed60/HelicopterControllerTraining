@@ -14,6 +14,9 @@ namespace My_Practice
 
         [Header("Tail Rotor Properties")]
         public float tailForce = 2f;
+
+        [Header("Cyclic Properties")]
+        public float cyclicForce;
         #endregion
 
         #region BuiltIn Methods
@@ -41,6 +44,11 @@ namespace My_Practice
         protected virtual void HandleCyclic(Rigidbody _rb, my_Input_Controller input)
         {
             //Debug.Log("Handling Cyclic");
+            float cyclicZForce = input.CyclicInput.x * cyclicForce;
+            _rb.AddRelativeTorque(Vector3.forward * cyclicZForce, ForceMode.Acceleration);
+
+            float cyclicXForce = input.CyclicInput.y * cyclicForce;
+            _rb.AddRelativeTorque(Vector3.right * cyclicXForce, ForceMode.Acceleration);
         }
         protected virtual void HandlePedals(Rigidbody _rb, my_Input_Controller input)
         {
