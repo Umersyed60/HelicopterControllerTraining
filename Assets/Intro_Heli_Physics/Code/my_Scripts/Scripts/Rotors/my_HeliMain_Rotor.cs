@@ -39,7 +39,7 @@ namespace My_Practice
         {
             //Debug.Log("Updating Main Rotor");
             currentRPMs = (dps / 360) * 60f;
-            Debug.Log(currentRPMs);
+            //Debug.Log(currentRPMs);
             transform.Rotate(Vector3.up, dps * Time.deltaTime * 0.5f);
 
             //Figure out the Swash blade effect
