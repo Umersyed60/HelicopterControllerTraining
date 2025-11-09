@@ -4,27 +4,24 @@ using UnityEngine;
 
 namespace My_Practice
 {
-    public class my_Heli_Camera : MonoBehaviour, my_IHeliCamera
+    public class my_Basic_HeliCamera : my_Base_HeliCamera, my_IHeliCamera
     {
         #region Variables
-        [Header("Camera Properties")]
-        public Rigidbody rb;
-        public Transform lookAtTarget;
+        [Header("Basic Camera Properties")]
         public float height = 2f;
         public float distance = 2f;
         public float smoothSpeed = 0.35f;
-
-        private Vector3 wantedPos;
-        private Vector3 refVelocity;
         #endregion
 
         #region Builtin Methods
-        private void FixedUpdate()
+        private void Start()
         {
-            if (rb)
-            {
-                UpdateCamera();
-            }
+            updateEvent.AddListener(UpdateCamera);
+        }
+
+        private void OnDisable()
+        {
+            updateEvent.RemoveListener(UpdateCamera);
         }
         #endregion
 
