@@ -28,15 +28,10 @@ namespace My_Practice
         #region Interface Methods
         public void UpdateCamera()
         {
-            //Debug.Log("Camera is Updating");
-            Vector3 flatfwd = rb.transform.forward;
-            flatfwd.y = 0f;
-            flatfwd = flatfwd.normalized;
-
             //Wanted Position
-            wantedPos = rb.position + (flatfwd * distance) + (Vector3.up * height);
+            wantedPos = rb.position + (targetFlatFwd * distance) + (Vector3.up * height);
 
-            //Positioning The Camera
+            //lets position the camera
             transform.position = Vector3.SmoothDamp(transform.position, wantedPos, ref refVelocity, smoothSpeed);
             transform.LookAt(lookAtTarget);
         }

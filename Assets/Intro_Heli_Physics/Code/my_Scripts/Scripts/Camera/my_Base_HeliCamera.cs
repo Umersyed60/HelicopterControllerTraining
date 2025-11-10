@@ -15,6 +15,7 @@ namespace My_Practice
         protected Vector3 wantedPos;
         protected Vector3 refVelocity;
         protected UnityEvent updateEvent = new UnityEvent();
+        protected Vector3 targetFlatFwd;
         #endregion
 
         #region BuiltIn Methods
@@ -29,6 +30,11 @@ namespace My_Practice
         {
             if (rb)
             {
+                //Get Flat Forward of the Target
+                targetFlatFwd = rb.transform.forward;
+                targetFlatFwd.y = 0f;
+                targetFlatFwd = targetFlatFwd.normalized;
+
                 updateEvent.Invoke();
             }
         }

@@ -12,6 +12,11 @@ namespace My_Practice
         public float minDistance = 4f;
         public float maxDistance = 8f;
         public float catchUpModifier = 5f;
+        public float rotationSpeed = 5f;
+        public float minVelocityForOrient = 5f;
+
+        private float finalAngle;
+        private Vector3 wantedDir;
         #endregion
 
         #region BuiltIn Methods
@@ -33,23 +38,36 @@ namespace My_Practice
             Vector3 dirToTarget = transform.position - rb.position;
             dirToTarget.y = 0f;
             Vector3 normalizedDir = dirToTarget.normalized;
-            Debug.DrawRay(rb.position, dirToTarget, Color.green);
+            wantedDir = normalizedDir;
+            Debug.DrawRay(rb.position, wantedDir, Color.green);
+
+            //Find the angle between our Dir Vector and our Flat forward
+            float angleToFwd = Vector3.SignedAngle(normalizedDir, targetFlatFwd, Vector3.up);
+            Debug.Log(angleToFwd);
+            float wantedAngle = 0f;
+            if (rb.velocity.magnitude > minVelocityForOrient)
+            {
+                wantedAngle = angleToFwd * Time.fixedDeltaTime;
+            }
+            finalAngle = Mathf.Lerp(finalAngle, wantedAngle, Time.fixedDeltaTime * rotationSpeed);
+            wantedDir = Quaternion.AngleAxis(finalAngle, Vector3.up) * wantedDir;
 
             //re-position the camera based off of the min max distance
-            wantedPos = rb.position + dirToTarget;
+            wantedPos = rb.position + (wantedDir * dirToTarget.magnitude);
             float curMagnitude = dirToTarget.magnitude;
             if (curMagnitude < minDistance)
             {
                 float delta = minDistance - curMagnitude;
-                wantedPos += normalizedDir * delta * Time.fixedDeltaTime * catchUpModifier;
+                wantedPos += wantedDir * delta * Time.fixedDeltaTime * catchUpModifier;
             }
 
             if (curMagnitude > maxDistance)
             {
                 float delta = curMagnitude - maxDistance;
-                wantedPos -= normalizedDir * delta * Time.fixedDeltaTime * catchUpModifier;
+                wantedPos -= wantedDir * delta * Time.fixedDeltaTime * catchUpModifier;
             }
 
+            //Apply final Tranformations
             transform.position = wantedPos + (Vector3.up * height);
             transform.LookAt(lookAtTarget);
         }
