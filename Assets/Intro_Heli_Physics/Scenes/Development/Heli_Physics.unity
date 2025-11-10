@@ -979,8 +979,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2eaf4bd301aa0b4d8b0824514fdf2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  lookAtTarget: {fileID: 0}
+  rb: {fileID: 3595630079388387138}
+  lookAtTarget: {fileID: 2090165383}
+  height: 2
+  minDistance: 5.642037
+  maxDistance: 8.68865
+  catchUpModifier: 5
+  rotationSpeed: 5
+  minVelocityForOrient: 5
 --- !u!1 &1670994279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,7 +1337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090165382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.51, z: -1}
+  m_LocalPosition: {x: 0, y: 1.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3595630079387900761}
@@ -3654,11 +3660,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8d9fe94bd3e764d8453fd9f95cdd90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLiftForce: 5
+  maxLiftForce: 3
   mainRotor: {fileID: 3595630079388387106}
-  tailForce: 2
+  tailForce: 3
   cyclicForce: 2
-  cyclicForceMultiplier: 4000
+  cyclicForceMultiplier: 5000
   useAutoLevel: 1
   autoLevelForce: 4
 --- !u!1 &3595630079388387141
