@@ -9,6 +9,7 @@ namespace My_Practice
         #region Variables
         [Header("Advanced Camera Properties")]
         public float height = 2f;
+        public float minGroundHeight = 4f;
         public float minDistance = 4f;
         public float maxDistance = 8f;
         public float catchUpModifier = 5f;
@@ -17,6 +18,7 @@ namespace My_Practice
 
         private float finalAngle;
         private Vector3 wantedDir;
+        private float finalHeight;
         #endregion
 
         #region BuiltIn Methods
@@ -67,8 +69,21 @@ namespace My_Practice
                 wantedPos -= wantedDir * delta * Time.fixedDeltaTime * catchUpModifier;
             }
 
+            //Take into account the height of the ground
+            float wantedheight = height;
+            RaycastHit hit;
+            Ray groundRay = new Ray(transform.position, Vector3.down);
+            if (Physics.Raycast(groundRay, out hit, 100f))
+            {
+                if (hit.transform.tag == "ground" && hit.distance <= minGroundHeight)
+                {
+                    wantedheight += minGroundHeight - hit.distance;
+                }
+            }
+            finalHeight = Mathf.Lerp(finalHeight, wantedheight, Time.fixedDeltaTime);
+
             //Apply final Tranformations
-            transform.position = wantedPos + (Vector3.up * height);
+            transform.position = wantedPos + (Vector3.up * finalHeight);
             transform.LookAt(lookAtTarget);
         }
         #endregion

@@ -220,7 +220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129743931}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.005, y: 0.662, z: -0.313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 419678402}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -982,11 +982,12 @@ MonoBehaviour:
   rb: {fileID: 3595630079388387138}
   lookAtTarget: {fileID: 2090165383}
   height: 2
-  minDistance: 5.642037
-  maxDistance: 8.68865
+  minGroundHeight: 4
+  minDistance: 6.39405
+  maxDistance: 9.325855
   catchUpModifier: 5
   rotationSpeed: 5
-  minVelocityForOrient: 5
+  minVelocityForOrient: 18
 --- !u!1 &1670994279
 GameObject:
   m_ObjectHideFlags: 0

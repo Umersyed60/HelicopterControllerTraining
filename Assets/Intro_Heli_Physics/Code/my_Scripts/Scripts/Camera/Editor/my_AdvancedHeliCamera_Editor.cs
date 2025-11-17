@@ -23,6 +23,8 @@ namespace My_Practice
             float minDist = targetCamera.minDistance;
             float maxDist = targetCamera.maxDistance;
             Vector3 targetFwd = targetCamera.rb.transform.forward;
+            targetFwd.y = 0f;
+            targetFwd = targetFwd.normalized;
 
             Handles.color = Color.blue;
             Handles.DrawWireDisc(targetCamera.rb.position, Vector3.up, minDist);

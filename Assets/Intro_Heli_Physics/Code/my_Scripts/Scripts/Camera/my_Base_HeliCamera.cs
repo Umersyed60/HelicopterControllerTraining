@@ -18,6 +18,13 @@ namespace My_Practice
         protected Vector3 targetFlatFwd;
         #endregion
 
+        #region Propterties
+        public Vector3 TargetFlatFwd
+        {
+            get { return targetFlatFwd; }
+        }
+        #endregion
+
         #region BuiltIn Methods
         // Start is called before the first frame update
         void Start()
