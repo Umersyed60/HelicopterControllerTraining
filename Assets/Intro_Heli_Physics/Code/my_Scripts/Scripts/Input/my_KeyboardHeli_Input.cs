@@ -7,6 +7,8 @@ namespace My_Practice
     public class my_KeyboardHeli_Input : my_BaseHeli_Input
     {
         #region Variables
+        [Header("Camera Input Properties")]
+        public KeyCode camButton = KeyCode.C;
         #endregion
 
         #region Properties
@@ -45,6 +47,12 @@ namespace My_Practice
         {
             get { return cyclicInput; }
         }
+
+        protected bool camInput = false;
+        public bool CamInput
+        {
+            get { return camInput; }
+        }
         #endregion
 
         #region Builtin Methods
@@ -63,6 +71,7 @@ namespace My_Practice
             HandleCollective();
             HandleCyclic();
             HandlePedal();
+            HandleCamButton();
 
 
             //Utility Methods
@@ -87,6 +96,11 @@ namespace My_Practice
         {
             cyclicInput.y = vertical;
             cyclicInput.x = horizontal;
+        }
+
+        protected virtual void HandleCamButton()
+        {
+            camInput = Input.GetKeyDown(camButton);
         }
 
         protected void ClampInputs()

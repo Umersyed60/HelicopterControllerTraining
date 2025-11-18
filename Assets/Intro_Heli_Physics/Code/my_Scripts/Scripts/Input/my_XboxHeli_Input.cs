@@ -31,6 +31,11 @@ namespace My_Practice
             pedaleInput = Input.GetAxis("XboxPedal");
         }
 
+        protected override void HandleCamButton()
+        {
+            camInput = Input.GetButtonDown("XboxCamBtn");
+        }
+
         #endregion
     }
 }

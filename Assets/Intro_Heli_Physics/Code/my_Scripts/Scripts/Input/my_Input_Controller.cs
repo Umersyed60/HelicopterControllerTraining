@@ -1,17 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace My_Practice
 {
+
+    public enum InputType { Keyboard, Xbox, Mobile }
+
     [RequireComponent(typeof(my_KeyboardHeli_Input), typeof(my_XboxHeli_Input))]
     public class my_Input_Controller : MonoBehaviour
     {
-        public enum InputType { Keyboard, Xbox, Mobile }
-
         #region Variables
-        [Header("Input Components")]
+        [Header("Input Properties")]
         public InputType inputType = InputType.Keyboard;
+
+        [Header("Input Events")]
+        public UnityEvent onCamButtonPressed = new UnityEvent();
+
+        [Header("Input Components")]
         private my_KeyboardHeli_Input keyboardInput;
         private my_XboxHeli_Input xboxInput;
         #endregion
@@ -47,6 +54,12 @@ namespace My_Practice
         {
             get { return pedalInput; }
         }
+
+        private bool camInput;
+        public bool CamInput
+        {
+            get { return camInput; }
+        }
         #endregion
 
         #region BuiltIn Methods
@@ -65,26 +78,35 @@ namespace My_Practice
 
         private void Update()
         {
-            switch (inputType)
+            if (keyboardInput && xboxInput)
             {
-                case InputType.Keyboard:
-                    throttleInput = keyboardInput.RawThrottleInput;
-                    collectiveInput = keyboardInput.CollectiveInput;
-                    stickycollectiveInput = keyboardInput.StickyCollectiveInput;
-                    cyclicInput = keyboardInput.CyclicInput;
-                    pedalInput = keyboardInput.PedaleInput;
-                    stickyThrottle = keyboardInput.StickyThrottle;
-                    break;
-                case InputType.Xbox:
-                    throttleInput = xboxInput.RawThrottleInput;
-                    collectiveInput = xboxInput.CollectiveInput;
-                    stickycollectiveInput = xboxInput.StickyCollectiveInput;
-                    cyclicInput = xboxInput.CyclicInput;
-                    pedalInput = xboxInput.PedaleInput;
-                    stickyThrottle = xboxInput.StickyThrottle;
-                    break;
-                default:
-                    break;
+                switch (inputType)
+                {
+                    case InputType.Keyboard:
+                        throttleInput = keyboardInput.RawThrottleInput;
+                        collectiveInput = keyboardInput.CollectiveInput;
+                        stickycollectiveInput = keyboardInput.StickyCollectiveInput;
+                        cyclicInput = keyboardInput.CyclicInput;
+                        pedalInput = keyboardInput.PedaleInput;
+                        stickyThrottle = keyboardInput.StickyThrottle;
+                        camInput = keyboardInput.CamInput;
+                        break;
+                    case InputType.Xbox:
+                        throttleInput = xboxInput.RawThrottleInput;
+                        collectiveInput = xboxInput.CollectiveInput;
+                        stickycollectiveInput = xboxInput.StickyCollectiveInput;
+                        cyclicInput = xboxInput.CyclicInput;
+                        pedalInput = xboxInput.PedaleInput;
+                        stickyThrottle = xboxInput.StickyThrottle;
+                        camInput = xboxInput.CamInput;
+                        break;
+                    default:
+                        break;
+                }
+                if (camInput)
+                {
+                    onCamButtonPressed.Invoke();
+                }
             }
         }
 
