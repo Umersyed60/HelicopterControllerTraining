@@ -21,7 +21,7 @@ namespace My_Practice
         {
             cameras = transform.GetComponentsInChildren<my_Base_HeliCamera>().ToList<my_Base_HeliCamera>();
             camIndex = startIndex;
-            SwitchCamera();
+            SwitchCamera(camIndex);
         }
 
         // Update is called once per frame
