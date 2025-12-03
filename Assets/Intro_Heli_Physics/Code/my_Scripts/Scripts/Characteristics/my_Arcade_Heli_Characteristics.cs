@@ -6,14 +6,18 @@ namespace My_Practice
 {
     public class my_Arcade_Heli_Characteristics : my_Heli_Characteristics
     {
-        protected override void HandleCyclic(Rigidbody _rb, my_Input_Controller input)
-        {
-            //base.HandleCyclic(_rb, input);
-        }
-
         protected override void HandleLift(Rigidbody _rb, my_Input_Controller input)
         {
             //base.HandleLift(_rb, input);
+            Vector3 liftForce = transform.up * (Physics.gravity.magnitude * _rb.mass);
+            _rb.AddForce(liftForce, ForceMode.Force);
+
+            _rb.AddForce(Vector3.up * input.ThrottleInput * maxLiftForce, ForceMode.Acceleration);
+        }
+
+        protected override void HandleCyclic(Rigidbody _rb, my_Input_Controller input)
+        {
+            //base.HandleCyclic(_rb, input);
         }
 
         protected override void HandlePedals(Rigidbody _rb, my_Input_Controller input)
