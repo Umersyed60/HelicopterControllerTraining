@@ -22,7 +22,7 @@ namespace My_Practice
         #endregion
 
         #region BuiltIn Methods
-        private void Start()
+        private void OnEnable()
         {
             updateEvent.AddListener(UpdateCamera);
         }
@@ -45,7 +45,7 @@ namespace My_Practice
 
             //Find the angle between our Dir Vector and our Flat forward
             float angleToFwd = Vector3.SignedAngle(normalizedDir, targetFlatFwd, Vector3.up);
-            Debug.Log(angleToFwd);
+            //Debug.Log(angleToFwd);
             float wantedAngle = 0f;
             if (rb.velocity.magnitude > minVelocityForOrient)
             {

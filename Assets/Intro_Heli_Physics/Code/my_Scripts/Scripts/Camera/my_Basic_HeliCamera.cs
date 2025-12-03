@@ -14,7 +14,7 @@ namespace My_Practice
         #endregion
 
         #region Builtin Methods
-        private void Start()
+        private void OnEnable()
         {
             updateEvent.AddListener(UpdateCamera);
         }
