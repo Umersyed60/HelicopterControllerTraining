@@ -23,10 +23,10 @@ namespace My_Practice
         public bool useAutoLevel = true;
         public float autoLevelForce = 2f;
 
-        private Vector3 flatFwd;
-        private float forwardDot;
-        private Vector3 flatRight;
-        private float rightDot;
+        protected Vector3 flatFwd;
+        protected float forwardDot;
+        protected Vector3 flatRight;
+        protected float rightDot;
         #endregion
 
         #region BuiltIn Methods

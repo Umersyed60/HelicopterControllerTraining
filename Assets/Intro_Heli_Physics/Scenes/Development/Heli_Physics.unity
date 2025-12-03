@@ -384,6 +384,7 @@ GameObject:
   - component: {fileID: 328847997}
   - component: {fileID: 328847996}
   - component: {fileID: 328847995}
+  - component: {fileID: 328848001}
   m_Layer: 0
   m_Name: Huey_Helicopter
   m_TagString: Untagged
@@ -486,6 +487,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328848001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328847994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce56f582a8152de47ade2e894b3f938d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLiftForce: 100
+  mainRotor: {fileID: 1409776639}
+  tailForce: 2
+  cyclicForce: 2
+  cyclicForceMultiplier: 1000
+  useAutoLevel: 1
+  autoLevelForce: 2
 --- !u!1 &415067931
 GameObject:
   m_ObjectHideFlags: 0
