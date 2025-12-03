@@ -18,6 +18,11 @@ namespace My_Practice
         protected override void HandleCyclic(Rigidbody _rb, my_Input_Controller input)
         {
             //base.HandleCyclic(_rb, input);
+            Vector3 fwdDir = input.CyclicInput.y * flatFwd;
+            Vector3 rightDir = input.CyclicInput.x * flatRight;
+            Vector3 finalDir = (fwdDir + rightDir).normalized;
+
+            _rb.AddForce(finalDir * cyclicForce, ForceMode.Acceleration);
         }
 
         protected override void HandlePedals(Rigidbody _rb, my_Input_Controller input)

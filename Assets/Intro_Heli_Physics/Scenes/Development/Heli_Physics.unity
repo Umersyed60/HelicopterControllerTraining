@@ -419,7 +419,7 @@ Rigidbody:
   m_GameObject: {fileID: 328847994}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -500,10 +500,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce56f582a8152de47ade2e894b3f938d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLiftForce: 1
+  maxLiftForce: 20
   mainRotor: {fileID: 1409776639}
   tailForce: 2
-  cyclicForce: 2
+  cyclicForce: 20
   cyclicForceMultiplier: 10
   useAutoLevel: 1
   autoLevelForce: 2
