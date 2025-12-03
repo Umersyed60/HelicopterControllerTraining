@@ -22,7 +22,7 @@ namespace My_Practice
         #endregion
 
         #region BuiltIn Methods
-        private void Start()
+        private void OnEnable()
         {
             updateEvent.AddListener(UpdateCamera);
         }

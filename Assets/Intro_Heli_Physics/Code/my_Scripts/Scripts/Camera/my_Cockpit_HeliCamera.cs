@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace My_Practice
 {
-    public class my_Basic_HeliCamera : my_Base_HeliCamera, my_IHeliCamera
+    public class my_Cockpit_HeliCamera : my_Base_HeliCamera, my_IHeliCamera
     {
-        #region Variables
-        [Header("Basic Camera Properties")]
-        public float height = 2f;
-        public float distance = 2f;
-        public float smoothSpeed = 0.35f;
+        #region Variable
+        [Header("Cockpit Camera Properties")]
+        public Vector3 offset = Vector3.zero;
+        public float fov = 70f;
+
+        private Vector3 startOffset;
         #endregion
+
 
         #region Builtin Methods
         private void OnEnable()
         {
+            startOffset = transform.position - rb.position;
             updateEvent.AddListener(UpdateCamera);
         }
 
@@ -28,14 +32,10 @@ namespace My_Practice
         #region Interface Methods
         public void UpdateCamera()
         {
-            //Wanted Position
-            wantedPos = rb.position + (targetFlatFwd * distance) + (Vector3.up * height);
-
-            //lets position the camera
-            transform.position = Vector3.SmoothDamp(transform.position, wantedPos, ref refVelocity, smoothSpeed);
+            Debug.DrawRay(rb.position, startOffset);
+            transform.position = rb.position + startOffset;
             transform.LookAt(lookAtTarget);
         }
         #endregion
     }
-
 }
