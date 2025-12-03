@@ -9,17 +9,15 @@ namespace My_Practice
     {
         #region Variable
         [Header("Cockpit Camera Properties")]
+        public Transform cockpitPosition;
         public Vector3 offset = Vector3.zero;
         public float fov = 70f;
-
-        private Vector3 startOffset;
         #endregion
 
 
         #region Builtin Methods
         private void OnEnable()
         {
-            startOffset = transform.position - rb.position;
             updateEvent.AddListener(UpdateCamera);
         }
 
@@ -32,9 +30,11 @@ namespace My_Practice
         #region Interface Methods
         public void UpdateCamera()
         {
-            Debug.DrawRay(rb.position, startOffset);
-            transform.position = rb.position + startOffset;
-            transform.LookAt(lookAtTarget);
+            if (cockpitPosition)
+            {
+                transform.position = cockpitPosition.position;
+                transform.LookAt(lookAtTarget);
+            }
         }
         #endregion
     }

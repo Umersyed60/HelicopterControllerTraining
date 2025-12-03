@@ -52,10 +52,16 @@ namespace My_Practice
 
             for (int i = 0; i < cameras.Count; i++)
             {
-                cameras[i].gameObject.SetActive(false);
-                if (i == camIndex)
+                //cameras[i].gameObject.SetActive(false);
+                Camera curCam = cameras[i].GetComponent<Camera>();
+                if (curCam)
                 {
-                    cameras[camIndex].gameObject.SetActive(true);
+                    curCam.enabled = false;
+                    if (i == camIndex)
+                    {
+                        //cameras[camIndex].gameObject.SetActive(true);
+                        curCam.enabled = true;
+                    }
                 }
             }
         }
