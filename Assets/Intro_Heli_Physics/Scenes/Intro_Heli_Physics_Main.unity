@@ -5127,7 +5127,8 @@ MonoBehaviour:
   fireClip: {fileID: 8300000, guid: 591a9cde833b8964897d3ecd79bc9588, type: 3}
   fireRate: 0.05
   barrelGO: {fileID: 4599517968456977012}
-  rotationSpeed: 10
+  rotationSpeed: 15
+  slowDownSpeed: 8
 --- !u!82 &4602424035473831552
 AudioSource:
   m_ObjectHideFlags: 0
