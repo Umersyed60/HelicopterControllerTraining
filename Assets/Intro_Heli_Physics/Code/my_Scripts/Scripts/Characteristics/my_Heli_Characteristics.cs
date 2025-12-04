@@ -23,10 +23,10 @@ namespace My_Practice
         public bool useAutoLevel = true;
         public float autoLevelForce = 2f;
 
-        private Vector3 flatFwd;
-        private float forwardDot;
-        private Vector3 flatRight;
-        private float rightDot;
+        protected Vector3 flatFwd;
+        protected float forwardDot;
+        protected Vector3 flatRight;
+        protected float rightDot;
         #endregion
 
         #region BuiltIn Methods
@@ -99,7 +99,7 @@ namespace My_Practice
             //Debug.Log(string.Format("FWD: {0} - RWD: {1}", forwardDot.ToString("0.0"), rightDot.ToString("0.0")));
         }
 
-        private void AutoLevel(Rigidbody rb)
+        protected virtual void AutoLevel(Rigidbody rb)
         {
             float rightForce = -forwardDot * autoLevelForce;
             float forwardForce = rightDot * autoLevelForce;
