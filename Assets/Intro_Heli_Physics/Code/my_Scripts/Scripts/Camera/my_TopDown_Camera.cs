@@ -27,7 +27,13 @@ namespace My_Practice
         #region Interface Methods
         public void UpdateCamera()
         {
+            Vector3 targetPos = rb.position;
+            targetPos.y = 0f;
 
+            wantedPos = (Vector3.back * -distance) + (Vector3.up * height);
+
+            transform.position = targetPos + wantedPos;
+            transform.LookAt(lookAtTarget.position);
         }
         #endregion
     }
