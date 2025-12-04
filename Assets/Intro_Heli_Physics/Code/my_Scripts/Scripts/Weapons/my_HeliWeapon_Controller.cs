@@ -24,11 +24,14 @@ namespace My_Practice
         #region Custom Methods
         public void UpdateWeapons(my_Input_Controller input)
         {
-            if (weapons.Count > 0 && allowFiring)
+            if (input.Fire)
             {
-                foreach (my_IWeapon weapon in weapons)
+                if (weapons.Count > 0 && allowFiring)
                 {
-                    weapon.FireWeapon();
+                    foreach (my_IWeapon weapon in weapons)
+                    {
+                        weapon.FireWeapon();
+                    }
                 }
             }
         }

@@ -60,6 +60,12 @@ namespace My_Practice
         {
             get { return camInput; }
         }
+
+        private bool fire;
+        public bool Fire
+        {
+            get { return fire; }
+        }
         #endregion
 
         #region BuiltIn Methods
@@ -90,6 +96,7 @@ namespace My_Practice
                         pedalInput = keyboardInput.PedaleInput;
                         stickyThrottle = keyboardInput.StickyThrottle;
                         camInput = keyboardInput.CamInput;
+                        fire = keyboardInput.Fire;
                         break;
                     case InputType.Xbox:
                         throttleInput = xboxInput.RawThrottleInput;
@@ -99,6 +106,7 @@ namespace My_Practice
                         pedalInput = xboxInput.PedaleInput;
                         stickyThrottle = xboxInput.StickyThrottle;
                         camInput = xboxInput.CamInput;
+                        fire = xboxInput.Fire;
                         break;
                     default:
                         break;

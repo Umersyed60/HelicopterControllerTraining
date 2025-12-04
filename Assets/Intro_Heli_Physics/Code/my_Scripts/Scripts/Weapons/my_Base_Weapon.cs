@@ -36,6 +36,7 @@ namespace My_Practice
                 HandleAudio();
                 HandleVFX();
 
+                Debug.Log("Weapon Shooting------------");
                 currentAmmoCount--;
                 currentAmmoCount = Mathf.Clamp(currentAmmoCount, 0, maxAmmoCount);
             }
@@ -47,6 +48,7 @@ namespace My_Practice
 
         public void Reload()
         {
+            Debug.Log("------------RELOAD------------");
             if (currentAmmoCount <= 0)
             {
                 currentAmmoCount = maxAmmoCount;
