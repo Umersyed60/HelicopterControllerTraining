@@ -99,7 +99,7 @@ namespace My_Practice
             //Debug.Log(string.Format("FWD: {0} - RWD: {1}", forwardDot.ToString("0.0"), rightDot.ToString("0.0")));
         }
 
-        private void AutoLevel(Rigidbody rb)
+        protected virtual void AutoLevel(Rigidbody rb)
         {
             float rightForce = -forwardDot * autoLevelForce;
             float forwardForce = rightDot * autoLevelForce;
