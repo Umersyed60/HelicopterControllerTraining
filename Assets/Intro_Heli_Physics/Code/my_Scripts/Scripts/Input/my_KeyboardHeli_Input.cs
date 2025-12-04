@@ -9,6 +9,7 @@ namespace My_Practice
         #region Variables
         [Header("Camera Input Properties")]
         public KeyCode camButton = KeyCode.C;
+        public KeyCode fireButton = KeyCode.Space;
         #endregion
 
         #region Properties
@@ -53,6 +54,12 @@ namespace My_Practice
         {
             get { return camInput; }
         }
+
+        protected bool fire = false;
+        public bool Fire
+        {
+            get { return fire; }
+        }
         #endregion
 
         #region Builtin Methods
@@ -72,6 +79,7 @@ namespace My_Practice
             HandleCyclic();
             HandlePedal();
             HandleCamButton();
+            HandleFireButton();
 
 
             //Utility Methods
@@ -121,6 +129,11 @@ namespace My_Practice
         {
             stickyCollectiveInput += -collectiveInput * Time.deltaTime;
             stickyCollectiveInput = Mathf.Clamp01(stickyCollectiveInput);
+        }
+
+        protected virtual void HandleFireButton()
+        {
+            fire = Input.GetKey(fireButton);
         }
 
         #endregion
