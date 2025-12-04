@@ -16,6 +16,7 @@ namespace My_Practice
 
         private my_Input_Controller input;
         private my_Heli_Characteristics characteristics;
+        private my_HeliWeapon_Controller weapons;
         #endregion
 
         #region BuiltIn Methods
@@ -29,6 +30,7 @@ namespace My_Practice
         {
             base.Start();
             characteristics = GetComponent<my_Heli_Characteristics>();
+            weapons = GetComponentInChildren<my_HeliWeapon_Controller>();
         }
 
         #endregion
@@ -43,6 +45,7 @@ namespace My_Practice
                 HandleEngines();
                 HandleRotors();
                 HandleCharacteristics();
+                HandleWeapons();
             }
         }
 
@@ -72,6 +75,14 @@ namespace My_Practice
             if (characteristics)
             {
                 characteristics.UpdateCharacteristics(_rb, input);
+            }
+        }
+
+        protected virtual void HandleWeapons()
+        {
+            if (weapons)
+            {
+                weapons.UpdateWeapons(input);
             }
         }
         #endregion
