@@ -13,7 +13,7 @@ namespace My_Practice
         public GameObject projectile;
         public int maxAmmoCount = 100;
         [Space(5)]
-        public GameObject muzzleFlash;
+        public ParticleSystem muzzleFlash;
         public AudioClip fireClip;
 
         protected AudioSource aSource;
@@ -83,7 +83,7 @@ namespace My_Practice
         {
             if (muzzleFlash)
             {
-
+                muzzleFlash.Play();
             }
         }
         #endregion
