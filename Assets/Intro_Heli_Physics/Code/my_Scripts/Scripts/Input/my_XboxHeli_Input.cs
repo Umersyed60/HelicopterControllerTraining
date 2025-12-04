@@ -36,6 +36,10 @@ namespace My_Practice
             camInput = Input.GetButtonDown("XboxCamBtn");
         }
 
+        protected override void HandleFireButton()
+        {
+            fire = Input.GetButton("XboxFireBtn");
+        }
         #endregion
     }
 }
