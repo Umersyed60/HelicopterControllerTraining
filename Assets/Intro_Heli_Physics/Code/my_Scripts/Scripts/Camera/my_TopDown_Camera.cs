@@ -10,6 +10,13 @@ namespace My_Practice
         [Header("Top Down Camera Properties")]
         public float height = 2f;
         public float distance = 2f;
+        public float leadDistance = 0.25f;
+
+        public float smoothTime = 0.15f;
+
+        private Vector3 finalPosition;
+        private Vector3 finalLead;
+        private Vector3 refLeadVelocity;
         #endregion
 
         #region Builtin Methods
@@ -32,8 +39,15 @@ namespace My_Practice
 
             wantedPos = (Vector3.back * -distance) + (Vector3.up * height);
 
-            transform.position = targetPos + wantedPos;
-            transform.LookAt(lookAtTarget.position);
+            //Adding camera view lead in direction of heli movement
+            Vector3 lead = rb.velocity;
+            lead.y = 0f;
+
+            finalPosition = Vector3.SmoothDamp(finalPosition, targetPos + wantedPos, ref refVelocity, smoothTime);
+            transform.position = finalPosition;
+
+            finalLead = Vector3.SmoothDamp(finalLead, (lead * leadDistance), ref refLeadVelocity, smoothTime);
+            transform.LookAt(lookAtTarget.position + finalLead);
         }
         #endregion
     }

@@ -769,6 +769,8 @@ MonoBehaviour:
   lookAtTarget: {fileID: 328848000}
   height: 120
   distance: 80
+  leadDistance: 0.25
+  smoothTime: 0.15
 --- !u!1 &501580040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,6 +1860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed77088e41faf8c428af7286fa6324bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isArcade: 1
   maxDps: 3000
 --- !u!4 &1892822980
 Transform:
