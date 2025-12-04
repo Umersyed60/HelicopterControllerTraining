@@ -36,7 +36,6 @@ namespace My_Practice
                 HandleAudio();
                 HandleVFX();
 
-                Debug.Log("Weapon Shooting------------");
                 currentAmmoCount--;
                 currentAmmoCount = Mathf.Clamp(currentAmmoCount, 0, maxAmmoCount);
             }
@@ -48,7 +47,7 @@ namespace My_Practice
 
         public void Reload()
         {
-            Debug.Log("------------RELOAD------------");
+            //Debug.Log("------------RELOAD------------");
             if (currentAmmoCount <= 0)
             {
                 currentAmmoCount = maxAmmoCount;
@@ -61,7 +60,7 @@ namespace My_Practice
         {
             if (projectile)
             {
-
+                Instantiate(projectile, muzzlePos.position, Quaternion.LookRotation(muzzlePos.forward));
             }
         }
 
