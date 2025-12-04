@@ -11,9 +11,12 @@ namespace My_Practice
         [Header("Base Projectile Properties")]
         public float projectileSpeed = 200f;
         public float damagePower = 10f;
+        public float timeoutTime = 10f;
 
         protected Rigidbody rb;
         protected SphereCollider col;
+
+        protected float startTime = 0f;
         #endregion
 
         #region BuiltIn Methods
@@ -27,7 +30,16 @@ namespace My_Practice
 
             if (rb)
             {
+                startTime = Time.time;
                 FireProjectile();
+            }
+        }
+
+        void Update()
+        {
+            if (Time.time >= startTime + timeoutTime)
+            {
+                DestroyProjectile();
             }
         }
         #endregion
@@ -36,6 +48,11 @@ namespace My_Practice
         public virtual void FireProjectile()
         {
             rb.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
+        }
+
+        public void DestroyProjectile()
+        {
+            Destroy(this.gameObject);
         }
         #endregion
     }

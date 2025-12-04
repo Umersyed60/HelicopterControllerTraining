@@ -28,7 +28,12 @@ namespace My_Practice
         #endregion
 
         #region Interface Methods
-        public void FireWeapon()
+        public virtual void FireWeapon()
+        {
+            Fire();
+        }
+
+        protected void Fire()
         {
             if (currentAmmoCount != 0)
             {
