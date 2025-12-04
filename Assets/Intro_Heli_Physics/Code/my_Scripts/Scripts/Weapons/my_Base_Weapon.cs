@@ -14,6 +14,7 @@ namespace My_Practice
         public int maxAmmoCount = 100;
         [Space(5)]
         public GameObject muzzleFlash;
+        public AudioClip fireClip;
 
         protected AudioSource aSource;
         protected int currentAmmoCount = 0;
@@ -24,6 +25,7 @@ namespace My_Practice
         void Start()
         {
             currentAmmoCount = maxAmmoCount;
+            aSource = GetComponent<AudioSource>();
         }
         #endregion
 
@@ -71,9 +73,9 @@ namespace My_Practice
 
         protected virtual void HandleAudio()
         {
-            if (aSource)
+            if (aSource && fireClip)
             {
-
+                aSource.PlayOneShot(fireClip);
             }
         }
 
